@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#000">
+  <title>Кликер HZDR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="score-container">
+      <span class="neon-text">Очки:</span>
+      <span id="score" class="neon-number">0</span>
+    </div>
+
+    <div id="clickBtn" class="click-btn">
+      <img src="hzdr.jpg" alt="HZDR" class="click-img">
+      <div class="click-glow"></div>
+    </div>
+
+    <div class="upgrades">
+      <div class="upgrade" id="upgrade-click">
+        <h3 class="upgrade-title">+1 к клику</h3>
+        <p class="upgrade-desc">Увеличивает силу клика на 1</p>
+        <p class="upgrade-level">Уровень: <span id="clickLevel">0</span></p>
+        <p class="upgrade-price">Цена: <span id="clickPrice">20</span> очков</p>
+        <button class="upgrade-btn neon-btn" onclick="buyUpgrade('click')">Улучшить</button>
+      </div>
+
+      <div class="upgrade" id="upgrade-auto">
+        <h3 class="upgrade-title">Авто-кликер</h3>
+        <p class="upgrade-desc">Автоматически кликает за вас (1 очко/клик)</p>
+        <p class="upgrade-level">Уровень: <span id="autoLevel">0</span></p>
+        <p class="upgrade-speed">Скорость: <span id="autoSpeed">—</span></p>
+        <p class="upgrade-price">Цена: <span id="autoPrice">50</span> очков</p>
+        <button class="upgrade-btn neon-btn" onclick="buyUpgrade('auto')">Активировать/Улучшить</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <small class="neon-subtle">Кликер, в который можно играть годами 🌌</small>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
