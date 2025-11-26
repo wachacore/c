@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.neon-text {
+  font-size: 1.4rem;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #0ff,
+    0 0 20px #0ff,
+    0 0 30px #0ff;
+  margin-right: 10px;
+}
+
+.neon-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ff0,
+    0 0 20px #ff0,
+    0 0 30px #ff0;
+}
+
+.score-container {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.click-btn {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+  transition: transform 0.2s ease-out;
+}
+
+.click-btn:active {
+  transform: scale(0.92);
+}
+
+.click-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: circle(48% at center); /* обрезаем до круга */
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+}
+
+.click-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.click-btn.clicked .click-glow {
+  opacity: 1;
+  animation: flash 0.6s ease-out, pulse 1.2s infinite 0.8s;
+}
+
+@keyframes flash {
+  0%   { opacity: 0.7; transform: scale(1); }
+  50%  { opacity: 1;   transform: scale(1.05); }
+  100% { opacity: 0;   transform: scale(1.1); }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4); }
+  50%      { box-shadow: 0 0 0 12px rgba(0, 255, 255, 0); }
+}
+
+.upgrades {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.upgrade {
+  background: rgba(10, 10, 30, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.upgrade::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    rgba(0, 255, 255, 0.3),
+    transparent 30%
+  );
+  animation: rotate 6s linear infinite;
+  opacity: 0.2;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.upgrade-title {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  color: #fff;
+  text-shadow: 0 0 8px #0ff;
+}
+
+.upgrade-desc {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+
+.upgrade-level,
+.upgrade-speed,
+.upgrade-price {
+  font-size: 1rem;
+  margin: 6px 0;
+  color: #ccc;
+}
+
+.upgrade-price {
+  color: #ff0;
+  text-shadow: 0 0 6px #ff8;
+}
+
+.neon-btn {
+  background: #000;
+  color: #0ff;
+  border: 2px solid #0ff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  outline: none;
+  transition: all 0.3s;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+}
+
+.neon-btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+.neon-btn:active {
+  transform: scale(0.97) translateY(0);
+}
+
+.neon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.neon-subtle {
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 30px;
+  text-shadow: 0 0 5px #06f;
+}
+
+.footer {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Анимация при недостатке очков */
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
